@@ -7,9 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <a href="/pages/about">About</a>
-  <a href="/pages/contact">Contact</a>
+<%= render 'layouts/header' %>
+<div class="container">
 <%= yield %>
-  <p><em>Developed by 7rka.com</em></p>
+</div>
+<%= render 'layouts/footer' %>
 </body>
 </html>
