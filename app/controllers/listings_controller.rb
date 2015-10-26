@@ -36,7 +36,7 @@ class ListingsController < ApplicationController
   private	
   
     def set_listing
-	    @listing = Listing.finf(params[:id])
+	    @listing = Listing.find(params[:id])
 	  end
 	  
 	  def listing_params
