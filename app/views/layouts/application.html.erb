@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Market</title>
+  <title>LegoMarket</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,10 +9,6 @@
 <body>
 <%= render 'layouts/header' %>
 <div class="container">
-	<div class="jumbotron">
-		<h3 class="text-center">Online Lego Market</h3>
-		<p class="text-center">Here you can buy or sell Lego</p>
-</div>
 	<% flash.each do |name, msg| %>
 	  <% if msg.is_a?(String) %>
 	    <div class="alert alert-<%= name == :notice ? "warning" : "success" %> alert-dismissable" role="alert">
