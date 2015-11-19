@@ -1,32 +1,65 @@
-<%= form_for([@listing, @order], html: { multipart: true }) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation" class="alert alert-warning alert-dismissable">
-	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
-      <ul>
-      <% @order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-	<form class="form-horizontal">
-	  <div class="form-group col-xs-7">
-		  <%= f.label :address %>
-      <%= f.text_field :address, class: "form-control" %>
-	  </div>
-	  <div class="form-group col-xs-7">
-		  <%= f.label :city %>
-      <%= f.text_field :city, class: "form-control" %>
-	  </div>
-	  <div class="form-group col-xs-7">
-		  <%= f.label :state %>
-      <%= f.text_field :state, class: "form-control" %>
-	  </div>
-	  <div class="form-group col-xs-7">
-	    <%= f.submit "Complete Order", class: "btn btn-success" %>
-	  </div>
-  </form>
-  
-<% end %> 
+<div class="row">
+	<div class="col-xs-12 col-sm-4 col-md-4">
+		<div class="thumbnail">
+		  <%= image_tag @listing.image.url %>
+		</div>
+		<h3><%= @listing.name %></h3>
+		<h4><%= number_to_currency(@listing.price) %></h4>
+	</div>
+	<div class="col-xs-12 col-sm-8 col-md-8">
+		<%= form_for([@listing, @order], html: { multipart: true }) do |f| %>
+		  <% if @order.errors.any? %>
+		    <div id="error_explanation" class="alert alert-warning alert-dismissable">
+			    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		      <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
+		      <ul>
+		      <% @order.errors.full_messages.each do |message| %>
+		        <li><%= message %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+	
+			<form class="form-horizontal">
+			  <div class="form-group">
+				  <%= f.label :address %>
+		      <%= f.text_field :address, class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+				  <%= f.label :city %>
+		      <%= f.text_field :city, class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+				  <%= f.label :state %>
+		      <%= f.text_field :state, class: "form-control" %>
+			  </div>
+			  <div class="form-group">
+			    <div class="row">
+			      <div class="col-xs-8">
+				      <%= label_tag :card_number, "Credit Card Number" %>
+		          <%= text_field_tag :card_number, nil, { :name => nil, :"data-stripe" => "number", class: "form-control" } %>
+			      </div>
+			      <div class="col-xs-4">
+				      <%= label_tag :card_code, "CVC" %>
+		          <%= text_field_tag :card_code, nil, { :name => nil, :"data-stripe" => "cvc", class: "form-control" } %>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="form-group">
+				  <%= label_tag nil, "Expiration Date" %>
+				  <div class="row">
+					  <div class="col-xs-4">
+				      <%= select_month nil, { use_two_digit_numbers: true }, { :name => nil, :"exp-month" => "cvc", class: "form-control" } %>
+				    </div>
+					  <div class="col-xs-4">
+						  <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year+10 }, { :name => nil, :"exp-year" => "cvc", class: "form-control" } %>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="form-group">
+			    <%= f.submit "Complete Order", class: "btn btn-success" %>
+			  </div>
+		  </form>
+		<% end %>
+	</div>
+</div> 
