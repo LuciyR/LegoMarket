@@ -19,6 +19,10 @@
 		      </ul>
 		    </div>
 		  <% end %>
+		  
+		  <div id="stripe_error" class="alert alert-danger" style="display:none">
+			  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+		  </div>
 	
 			<form class="form-horizontal">
 			  <div class="form-group">
@@ -49,10 +53,10 @@
 				  <%= label_tag nil, "Expiration Date" %>
 				  <div class="row">
 					  <div class="col-xs-4">
-				      <%= select_month nil, { use_two_digit_numbers: true }, { :name => nil, :"exp-month" => "cvc", class: "form-control" } %>
+				      <%= select_month nil, { use_two_digit_numbers: true }, { :name => nil, :"data-stripe" => "exp-month", class: "form-control" } %>
 				    </div>
 					  <div class="col-xs-4">
-						  <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year+10 }, { :name => nil, :"exp-year" => "cvc", class: "form-control" } %>
+						  <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year+10 }, { :name => nil, :"data-stripe" => "exp-year", class: "form-control" } %>
 					  </div>
 				  </div>
 			  </div>
