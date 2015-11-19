@@ -2,19 +2,17 @@ class OrdersController < ApplicationController
 	before_action :set_order, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
 	
-	def index
-    @orders = Order.all		
+	def sales
+    @orders = Order.all.where(seller: current_user).order('created_at DESC')		
 	end
 	
-	def show
+	def purchases
+    @orders = Order.all.where(buyer: current_user).order('created_at DESC')		
 	end
 	
 	def new
     @order = Order.new
     @listing = Listing.find(params[:listing_id])		
-	end
-	
-	def edit
 	end
 	
 	def create
@@ -27,23 +25,10 @@ class OrdersController < ApplicationController
     @order.seller_id  = @seller.id
     
     if @order.save
-	    redirect_to root_url, notice: "Order was successfully created."
+	    redirect_to root_url, notice: 'Order was successfully created.'
 	  else
 	    render :new
 	  end		
-	end
-	
-	def update
-		if @order.update(order_params)
-			redirect_to @order, notice: 'Order was successfully updated.' 
-		else
-		  render :edit
-		end
-	end
-	
-	def destroy
-		@order.destroy
-		redirect_to orders_url, notice: 'Order was deleted.'
 	end
 	
 	private	
