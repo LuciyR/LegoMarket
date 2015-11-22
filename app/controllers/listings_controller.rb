@@ -8,7 +8,12 @@ class ListingsController < ApplicationController
 	end
 	
 	def index
-	  @listings = Listing.all.order("created_at DESC")
+		if params[:category].blank?
+	    @listings = Listing.all.order("created_at DESC")
+	  else
+      @category_id = Category.find_by(name: params[:category]).id
+      @listings = Listing.where(category_id: @category_id).order("created_at DESC")	  
+	  end
 	end
 	
 	def show;  end
@@ -62,7 +67,7 @@ class ListingsController < ApplicationController
 	  end
 	  
 	  def listing_params
-		  params.require(:listing).permit(:name, :description, :price, :image)
+		  params.require(:listing).permit(:name, :category_id, :description, :price, :image)
 		end
 		
 		def check_user

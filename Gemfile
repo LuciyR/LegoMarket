@@ -12,6 +12,7 @@ gem 'paperclip-dropbox', '>= 1.1.7'
 gem 'figaro'
 gem 'devise'
 gem 'stripe'
+gem 'will_paginate', '~> 3.0.6'
 
 gem 'jquery-rails'
 gem 'turbolinks'
