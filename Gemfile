@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'devise'
 gem 'stripe'
 gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
 
 gem 'jquery-rails'
 gem 'turbolinks'
