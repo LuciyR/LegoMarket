@@ -4,29 +4,23 @@ body {
 	background-color: #F5F5F1;
 	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
+	height:100%;
+	width:100%;
 }
 
-.navbar-default {
-	background-color: #EFEFEB;
-}
-
-.navbar-default .navbar-brand {
-	font-family: "guardian-egypt", georgia, serif;
-	font-weight: 400;
-	color: #d5641c;
-	font-size: 30px;
-}
-
-.navbar-default .navbar-nav > li > a {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-	color: #0192B5;
+.navbar-brand {
+	color: #a80000 !important;
+	font-size: 1.4em !important;
+	font-family: Verdana, serif;
 }
 
 .jumbotron {
-	color: #d5641c;
-	font-family: "guardian-egypt", georgia, serif;
+	background: rgba(255, 255, 255, 0) !important;
+	color: black !important;
+}
+
+.jumbotron h3 {
+	color: #a80000 !important;
 }
 
 .col-xs-3:nth-child(4n+1) {
@@ -42,4 +36,8 @@ body {
 		font-size: 12px;
 		margin: 0px;
 	}
+}
+
+#footer {
+	color: #a80000;
 }
