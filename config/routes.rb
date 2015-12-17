@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 	resources  :listings do
     resources :orders, only: [:new, :create]		
 	end
+	resource :contacts, only: [:new, :create]
 	
   get 'pages/about'
-  get 'pages/contact'
   get 'seller'    => 'listings#seller'
   get 'sales'     => 'orders#sales'
   get 'purchases' => 'orders#purchases'
